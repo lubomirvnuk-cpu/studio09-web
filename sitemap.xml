@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://studio09.sk/</loc><lastmod>2026-09-17</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://studio09.sk/</loc><lastmod>2026-11-17</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://studio09.sk/auta/peugeot-e-rifter/</loc><lastmod>2026-11-17</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://studio09.sk/auta/mercedes-e220d/</loc><lastmod>2026-11-17</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://studio09.sk/auta/mercedes-c300e/</loc><lastmod>2026-11-17</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://studio09.sk/auta/vw-touareg/</loc><lastmod>2026-11-17</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://studio09.sk/nastroje/vyber-elektromobilu</loc><lastmod>2026-09-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://studio09.sk/nastroje/kalkulacka-dovozu-auta</loc><lastmod>2026-09-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://studio09.sk/nastroje/naklady-elektromobil-vs-spalovak</loc><lastmod>2026-09-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>

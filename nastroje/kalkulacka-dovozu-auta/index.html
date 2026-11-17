@@ -139,6 +139,9 @@ header.dark .hb.wa:hover svg,header.dark .hb.wa:hover em{color:var(--ink)}
 .cell.price{background:linear-gradient(100deg,rgba(28,240,192,.13),rgba(20,27,44,.6));
  border-left:4px solid var(--tyr);padding:16px 22px 17px;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
 .cell.price span{color:rgba(28,240,192,.72)}
+.cell.price span s.was{color:var(--gr2);letter-spacing:.04em;margin-left:8px;text-transform:none}
+.cell.price span em.zlava{font-style:normal;background:var(--tyr);color:var(--ink);letter-spacing:.06em;padding:2px 6px 1px;margin-left:8px}
+.card.act{cursor:pointer}
 .cell.price .pmain>b{font-size:clamp(34px,3.6vw,50px) !important;line-height:.95;color:var(--tyr);letter-spacing:-.04em}
 .cell.cta{display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
 .mleft{min-width:0}
@@ -1683,6 +1686,9 @@ function splatka(cena,akoPct,mes,urok){
 /* ═════ GALÉRIA ═════ */
 const CARS=[
  {id:"rifter1",make:"Peugeot",model:"e-Rifter Allure 50 kWh",year:2025,price:26900,avail:"skladom",
+  slug:"peugeot-e-rifter",was:28900,
+  det:{rok:"6/2025",viac:[["Výkon","100 kW"],["Prevodovka","Automat"],["Farba","Modrošedá metalíza"]],
+   vybava:"10-palcový infotainment, bezdrôtový Apple CarPlay a Android Auto, digitálny prístrojový panel, tempomat, zadné parkovacie senzory, posuvné bočné dvere. Auto je stále v záruke, čerstvo po servisnej prehliadke v autorizovanom servise, certifikát stavu batérie AVILOO 98,3 %."},
   drive:"ev",driveLabel:"Elektro",img:"images-web/rifter1.jpg",
   specs:[["Rok","2025"],["Najazdené","8 900 km"],["Dojazd","320 km"]],
   q:{s:5,r:170,dc:100,tow:750,size:4,eff:1},
@@ -1690,12 +1696,18 @@ const CARS=[
   tags:["1. majiteľ","Odpočet DPH"],bl:"#132029",gl:"#1E4653"},
 
  {id:"e220d",make:"Mercedes-Benz",model:"E 220 d Avantgarde",year:2025,price:49900,avail:"skladom",
+  slug:"mercedes-e220d",was:51900,
+  det:{rok:"11/2025",viac:[["Výkon","145 kW"],["Prevodovka","Automat"],["Pohon","Zadný"],["Farba","Čierna metalíza"]],
+   vybava:"Otvárateľná panoramatická strecha, ambientné osvetlenie interiéru, vyhrievaný volant, virtual cockpit. Auto je v záruke, v cene je letná aj zimná sada pneumatík."},
   drive:"mild",driveLabel:"Mild hybrid 48 V",img:"images-web/e220d_2025_2.jpg",
   specs:[["Rok","2025"],["Najazdené","28 000 km"]],
   link:"https://www.autobazar.eu/detail/mercedes-benz-e-trieda-e220d-mhev/Aegq2YjekbL/",
   tags:["1. majiteľ","Odpočet DPH"],bl:"#1A1D24",gl:"#3B4250"},
 
  {id:"c300e",make:"Mercedes-Benz",model:"C 300 e T Avantgarde",year:2023,price:36900,avail:"skladom",
+  slug:"mercedes-c300e",
+  det:{viac:[["Výkon","230 kW"],["Pohon","Zadný"],["Farba","Čierna metalíza"]],
+   vybava:"Svetlý kožený interiér, otvárateľné panoramatické strešné okno, elektricky nastaviteľné a vyhrievané predné sedadlá, 360° kamera a PARKTRONIC, ambientné osvetlenie, MBUX s veľkým dotykovým displejom, navigácia, Apple CarPlay a Android Auto, elektricky ovládané veko kufra, KEYLESS štart. Kompletná servisná história, servisná prehliadka 9/2026."},
   drive:"phev",driveLabel:"Plug-in hybrid",img:"images-web/car_embedded_02.jpg",
   specs:[["Rok","2023"],["Najazdené","44 000 km"],["Dojazd","107 km","na batériu"]],
   link:"https://www.autobazar.eu/detail/mercedes-benz-c-trieda-phev-313ps/Ae4LMAL3CES/",
@@ -1723,6 +1735,9 @@ const CARS=[
   tags:["1. majiteľ","Odpočet DPH"],bl:"#211722",gl:"#4C2E42"},
 
  {id:"touareg",make:"Volkswagen",model:"Touareg 3.0 TDI 4Motion",year:2013,price:11090,avail:"skladom",
+  slug:"vw-touareg",
+  det:{rok:"5/2013",viac:[["Výkon","180 kW"],["Prevodovka","Automat"],["Pohon","4x4"],["Farba","Modrá metalíza"]],
+   vybava:"Ťažné zariadenie, digitálna trojzónová klimatizácia, vyhrievané sedadlá, letná aj zimná sada na diskoch, 2 kľúče. Karoséria v originálnom laku, nová STK a EK bez chýb, servisná knižka vyplnená."},
   drive:"diesel",driveLabel:"Diesel",img:"images-web/touareg_2013.jpg",
   specs:[["Rok","2013"],["Najazdené","245 000 km"]],
   link:"https://www.autobazar.eu/detail/volkswagen-touareg-30-tdi-4motion-dsg-tazne/AeX3GHogLdE/",
@@ -1785,7 +1800,7 @@ CARS.forEach((c,i)=>{
   '<span class="chip '+a.cls+'">'+a.t+'</span>'+
   '<span class="chip drive d-'+c.drive+'">'+c.driveLabel+'</span></div>'+
   '<div class="refl"><img src="'+ZAKLAD+c.img+'" alt="" aria-hidden="true"></div>';
- d.onclick=()=>{if(i!==idx){idx=i;drawCars()}};stage.appendChild(d);
+ d.onclick=()=>{if(i!==idx){idx=i;drawCars()}else if(c.slug){location.href=ZAKLAD+'auta/'+c.slug+'/'}};stage.appendChild(d);
  const tck=document.createElement('i');tck.title=c.make+' '+c.model;
  tck.onclick=()=>{idx=i;drawCars()};ticks.appendChild(tck);
 });
@@ -1807,15 +1822,16 @@ function drawCars(){
   const a=AVAIL[c.avail];
   nm.innerHTML=c.make+'<em>'+c.model+'</em>';
   sp.innerHTML=c.specs.map(s=>'<div class="cell"><span>'+s[0]+'</span><b>'+s[1]+'</b>'+'<i class="hint">'+(s[2]||'')+'</i></div>').join('')+
-   '<div class="cell price'+(c.bonus?' hasbonus':'')+'"><div class="pmain"><span>Cena s DPH</span><b>'+eur(c.price)+'</b>'+
+   '<div class="cell price'+(c.bonus?' hasbonus':'')+'"><div class="pmain"><span>Cena s DPH'+(c.was>c.price?' <s class="was">'+eur(c.was)+'</s><em class="zlava">−'+eur(c.was-c.price)+'</em>':'')+'</span><b>'+eur(c.price)+'</b>'+
     '<i class="splat">alebo <b>'+splatka(c.price)+' €</b> / mesiac</i></div>'+
     (c.bonus?'<div class="bonus"><img src="'+ZAKLAD+c.bonus.img+'" alt="'+c.bonus.nazov+'" width="160" height="240" decoding="async">'+
      '<div class="btx"><small>+ '+c.bonus.nazov.replace(' ',' <br>')+'</small><strong>zadarmo</strong></div></div>':'')+
     '</div>'+
    '<div class="cell cta"><div class="ctarow">'+
+    (c.slug?'<a href="'+ZAKLAD+'auta/'+c.slug+'/" class="more">Detail auta '+ARW+'</a>':
     '<a '+zaujem(c)+' class="more '+(c.avail==='rezervovane'||c.avail==='predane'?'alt':'')+'">'+a.cta+' '+ARW+'</a>'+
     (c.link?'<a href="'+c.link+'" class="more detail" target="_blank" rel="noopener">Detail auta'+
-     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></a>':'')+
+     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></a>':''))+
     '</div>'+
     '<i class="avnote">'+a.note+'</i></div>';
   tg.innerHTML=c.tags.map(x=>'<span class="tg">'+x+'</span>').join('');
