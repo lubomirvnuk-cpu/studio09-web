@@ -1781,7 +1781,8 @@ const AVAIL={
 };
 function mailOdkaz(c,a){return "mailto:"+MAIL+"?subject="+encodeURIComponent(a.subj(c))+"&body="+encodeURIComponent(a.body(c))}
 /* tlačidlo pri aute: otvorí formulár s vybraným autom a pripravenou správou */
-function zaujem(c){return 'href="/#kontakt" data-zaujem="'+CARS.indexOf(c)+'"'}
+function zaujem(c){let t=AVAIL[c.avail].body(c).replace(/\s*Ďakujem\s*$/,'').replace(/,\s*\n+\s*/,', ').replace(/\s*\n+\s*/g,' ').trim();
+ return 'href="https://wa.me/421908714517?text='+encodeURIComponent(t)+'" target="_blank" rel="noopener"'}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-zaujem]');if(!b)return;e.preventDefault();
  const c=CARS[+b.dataset.zaujem];if(!c)return;
  let t=AVAIL[c.avail].body(c).replace(/^Dobrý deň,\s*/,'').replace(/\s*Ďakujem\s*$/,'').replace(/\s*\n+\s*/g,' ').trim();
