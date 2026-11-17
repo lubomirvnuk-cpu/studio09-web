@@ -1,0 +1,115 @@
+/* Studio09 — spoločné pre všetky stránky: písma, menu v hlavičke, päta, spodná lišta, šípky, zvýraznenie pri klávesnici.
+   Písma sú uložené priamo na webe (priečinok /fonts), nesťahujú sa z Google. */
+@font-face{font-family:Archivo;font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/archivo-latin-ext-wght-normal.woff2) format('woff2');
+ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Archivo;font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/archivo-latin-wght-normal.woff2) format('woff2');
+ unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/inter-latin-ext-400-normal.woff2) format('woff2');
+ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/inter-latin-400-normal.woff2) format('woff2');
+ unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/inter-latin-ext-600-normal.woff2) format('woff2');
+ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/inter-latin-600-normal.woff2) format('woff2');
+ unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/archivo-narrow-latin-ext-600-normal.woff2) format('woff2');
+ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/archivo-narrow-latin-600-normal.woff2) format('woff2');
+ unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/archivo-narrow-latin-ext-700-normal.woff2) format('woff2');
+ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Archivo Narrow';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/archivo-narrow-latin-700-normal.woff2) format('woff2');
+ unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/barlow-condensed-latin-ext-800-normal.woff2) format('woff2');
+ unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/barlow-condensed-latin-800-normal.woff2) format('woff2');
+ unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* šípka v tlačidlách a odkazoch — kreslená, všade rovnaká */
+.arw{display:inline-block;width:1.25em;height:1.25em;flex:none;vertical-align:-.27em;fill:none;stroke:currentColor;stroke-width:2.2;
+ stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
+.arw.l{transform:scaleX(-1)}
+a:hover>.arw:not(.l),button:hover>.arw:not(.l){transform:translateX(3px)}
+
+/* zvýraznenie pri ovládaní klávesnicou */
+:focus-visible{outline:2px solid #1CF0C0;outline-offset:3px}
+.t-light :focus-visible,.t-tyr :focus-visible,.ns-light :focus-visible{outline-color:#08765F}
+
+/* ══ MENU V HLAVIČKE — počítač od 1200 px ══ */
+.hnav{display:none}
+@media(min-width:1200px){
+ .hnav{display:flex;align-items:center;gap:2px;padding:4px;margin:0 auto;
+  background:rgba(11,15,26,.76);backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);
+  border:1px solid rgba(237,241,248,.14)}
+ .hnav a{display:block;padding:10px 14px;font-family:Archivo;font-weight:700;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:#AFBDD6;text-decoration:none;white-space:nowrap;transition:color .25s,background-color .25s}
+ .hnav a:hover{color:#EDF1F8}
+ .hnav a.on,.hnav a.on:hover{background:#1CF0C0;color:#0D1220}
+ header .hsoc,header .hlink,header .hsec{display:none !important}
+ .tabbar{display:none !important}
+}
+@media(min-width:1200px) and (max-width:1359px){
+ .hnav a{padding:10px 11px;letter-spacing:.1em}
+ header .hb em{display:none}
+ header .hb{padding:9px 11px}
+}
+
+/* ══ SPODNÁ LIŠTA — telefón a tablet ══ */
+.tabbar{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:70;display:grid;grid-auto-flow:column;grid-auto-columns:auto;padding:5px;
+ background:rgba(11,15,26,.76);backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);
+ border:1px solid rgba(237,241,248,.14);box-shadow:0 20px 46px -14px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.07)}
+.tabbar .ind{position:absolute;top:5px;bottom:5px;left:0;background:#1CF0C0;z-index:0;
+ transition:transform .46s cubic-bezier(.34,.9,.24,1),width .46s cubic-bezier(.34,.9,.24,1)}
+.tabbar a{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:9px;padding:12px 18px;text-decoration:none;
+ color:#AFBDD6;transition:color .35s;white-space:nowrap;cursor:pointer}
+.tabbar a svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.tabbar a em{font-style:normal;font-family:Archivo;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.tabbar a:hover{color:#EDF1F8}
+.tabbar a.on,.tabbar a.on:hover{color:#0D1220}
+.tabbar:not(:has(.ind)) a.on{background:#1CF0C0}
+/* užší notebook a tablet na šírku: lišta vpravo dole, ikona nad popisom — nezakrýva ľavý stĺpec s cenou */
+@media(min-width:941px) and (max-width:1199px){
+ .tabbar{left:auto;right:16px;transform:none;bottom:16px}
+ .tabbar a{flex-direction:column;gap:5px;padding:9px 14px}
+ .tabbar a em{font-size:9.5px;letter-spacing:.08em}
+}
+@media(max-width:940px) and (orientation:portrait){
+ .tabbar{left:8px;right:8px;transform:none;bottom:10px;grid-auto-columns:minmax(0,1fr)}
+ .tabbar a{padding:10px 2px;gap:0;flex-direction:column}
+ .tabbar a em{font-size:9px;letter-spacing:.05em;margin-top:5px}
+}
+@media(max-width:374px) and (orientation:portrait){.tabbar a em{font-size:8.5px;letter-spacing:.02em}}
+@media(max-width:940px) and (orientation:landscape){
+ .tabbar{left:auto;right:12px;transform:none;bottom:10px}
+ .tabbar a{padding:9px 11px;gap:0}
+ .tabbar a em{display:none}
+}
+
+/* ══ PÄTA ══ */
+.ft{background:#0A0E19;color:#AFBDD6;border-top:1px solid rgba(237,241,248,.08);padding:64px 30px 40px;font-family:Inter,sans-serif;font-size:14px;line-height:1.6}
+.ft-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px}
+.ft-lg{display:flex;flex-direction:column;margin-bottom:18px;color:#EDF1F8}
+.ft-lg .wm{font-family:'Barlow Condensed';font-weight:800;font-size:26px;letter-spacing:.6px;line-height:1}
+.ft-lg .wm em{font-style:normal;color:#1CF0C0}
+.ft-lg .tagline{font-family:Archivo;font-weight:600;font-size:9px;letter-spacing:.24em;text-transform:uppercase;opacity:.6;margin-top:4px}
+.ft p{margin:0 0 12px;color:#8392AE}
+.ft p b{font-weight:600;color:#EDF1F8}
+.ft .ft-or{font-size:12px;line-height:1.55;max-width:30em}
+.ft h4{font-family:Archivo;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#EDF1F8;margin:0 0 14px}
+.ft-col{display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.ft a{color:#AFBDD6;text-decoration:none;transition:color .2s}
+.ft a:hover{color:#1CF0C0}
+.ft .ft-soc{display:inline-flex;align-items:center;gap:8px}
+.ft .ft-soc svg{width:15px;height:15px}
+.ft-bot{max-width:1180px;margin:44px auto 0;padding-top:22px;border-top:1px solid rgba(237,241,248,.08);display:flex;justify-content:space-between;
+ gap:12px 24px;flex-wrap:wrap;font-size:12.5px;color:#8392AE}
+.ft-pr{display:flex;gap:22px;flex-wrap:wrap}
+.ft-pr a{color:#8392AE}
+@media(max-width:1199px){.ft{padding-bottom:118px}}
+@media(max-width:940px){
+ .ft{padding:48px 18px 112px}
+ .ft-in{grid-template-columns:1fr 1fr;gap:34px 24px}
+ .ft-firma{grid-column:1 / -1}
+}
+@media(max-width:940px) and (orientation:landscape){.ft{padding-bottom:40px}}
+@media(max-width:420px){.ft-in{grid-template-columns:1fr}}

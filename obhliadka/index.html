@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Obhliadka jazdeného auta · Studio09</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: jeden stĺpec do mobilu, lepkavá lišta s počítadlom a sekciami, riadky bodov s dvoma tlačidlami vpravo */
+:root{
+  --bg:#eceff1;
+  --surface:#ffffff;
+  --ink:#172026;
+  --muted:#56636c;
+  --line:#d3d9dd;
+  --tag:#e3a400;
+  --tag-ink:#231a00;
+  --ok:#2c7a4b;
+  --ok-soft:#e1f1e7;
+  --bad:#c2362b;
+  --bad-soft:#fbe4e1;
+  --f-head:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111619;--surface:#192126;--ink:#e5eaed;--muted:#97a4ac;--line:#2b363d;
+  --tag:#f0b72c;--tag-ink:#231a00;--ok:#57b77c;--ok-soft:#18311f;--bad:#ef6a5d;--bad-soft:#3a1c19;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111619;--surface:#192126;--ink:#e5eaed;--muted:#97a4ac;--line:#2b363d;
+  --tag:#f0b72c;--tag-ink:#231a00;--ok:#57b77c;--ok-soft:#18311f;--bad:#ef6a5d;--bad-soft:#3a1c19;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:760px;margin:0 auto}
+h1,h2,h3,button,.lbl{font-family:var(--f-head)}
+h1{font-size:28px;font-weight:800;font-stretch:80%;line-height:1.05;margin:24px 0 6px;text-wrap:balance;letter-spacing:-.01em}
+.intro{color:var(--muted);margin:0 0 4px;max-width:62ch;font-size:15px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:12px 0 4px;font-size:14px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}
+
+/* lepkavá lišta */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin:14px calc(-1*max(16px,env(safe-area-inset-left,0px))) 0;
+  padding:10px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+.bar-in{max-width:760px;margin:0 auto}
+.row1{display:flex;gap:10px;align-items:center}
+#car{flex:1;min-width:0;font:600 16px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:9px 10px}
+#car::placeholder{color:var(--muted);font-weight:400}
+.counts{display:flex;gap:12px;font-family:var(--f-head);font-weight:700;font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.counts>span,.counts a{color:inherit;text-decoration:none;display:flex;align-items:baseline;gap:4px}
+.counts>span{color:var(--ok)}
+.counts .k{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.c-ok{color:var(--ok)} .c-bad{color:var(--bad)}
+.progress{height:3px;background:var(--line);margin-top:10px;border-radius:2px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--ink);transition:width .2s}
+nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin:0 -4px;padding:2px 0}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;font:600 13px var(--f-head);letter-spacing:.02em;color:var(--muted);text-decoration:none;padding:9px 8px;border-bottom:2px solid transparent;white-space:nowrap}
+nav a.on{color:var(--ink);border-bottom-color:var(--ink)}
+nav a.done{color:var(--ok)}
+
+/* sekcie */
+section{scroll-margin-top:130px;margin-top:30px}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:6px}
+h2{font-size:21px;font-weight:800;font-stretch:85%;margin:0;line-height:1.15;text-wrap:balance}
+.sc{font-family:var(--f-head);font-size:13px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.snote{font-size:14.5px;color:var(--muted);margin:8px 0 0;max-width:62ch}
+ul.items{list-style:none;margin:0;padding:0}
+li.it{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:14px 0 14px 10px;border-bottom:1px solid var(--line);border-left:3px solid transparent;margin-left:-13px;padding-left:10px}
+li.it.ok{border-left-color:var(--ok)}
+li.it.bad{border-left-color:var(--bad);background:linear-gradient(90deg,var(--bad-soft),transparent 70%)}
+.t{font-weight:600;font-size:16px;line-height:1.3;margin:0}
+.d{font-size:14.5px;color:var(--muted);margin:4px 0 0;max-width:62ch}
+.d b{color:var(--ink);font-weight:600}
+.lbl{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 5px 1px;border-radius:3px;margin-right:6px;vertical-align:2px;line-height:1.3}
+.lbl.trik{background:var(--tag);color:var(--tag-ink)}
+.lbl.stop{background:var(--bad);color:#fff}
+.btns{display:flex;gap:6px;align-self:start}
+.btns button{width:50px;height:44px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.02em}
+.btns button:focus-visible,.act button:focus-visible,#car:focus-visible,textarea:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+li.it.ok .b-ok{background:var(--ok);border-color:var(--ok);color:#fff}
+li.it.bad .b-bad{background:var(--bad);border-color:var(--bad);color:#fff}
+
+/* kódy na sklách */
+.code{font-family:var(--f-head);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink)}
+
+/* súhrn */
+#suhrn .empty{color:var(--muted);font-size:15px;margin:12px 0}
+#problist{list-style:none;padding:0;margin:8px 0 0}
+#problist li{padding:10px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);gap:2px}
+#problist .ps{font-size:12px;color:var(--muted);font-family:var(--f-head);letter-spacing:.04em;text-transform:uppercase}
+#problist .pt{font-weight:600;color:var(--bad)}
+label.nl{display:block;font:700 13px var(--f-head);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:20px 0 6px}
+textarea{width:100%;min-height:120px;font:15px/1.4 var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px;resize:vertical}
+.act{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+.act button{font:700 14px var(--f-head);padding:11px 16px;border-radius:6px;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
+.act button.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.act span{font-size:14.5px}
+.src{margin-top:40px;font-size:13.5px;color:var(--muted)}
+.src h3{font-size:14px;margin:0 0 6px;color:var(--ink)}
+.src ul{margin:0;padding-left:18px}
+.src a{color:var(--muted)}
+@media (min-width:640px){h1{font-size:36px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Obhliadka jazdeného auta</h1>
+  <p class="intro">Choď zhora nadol, pri každom bode ťukni <b>OK</b> alebo <b>Vada</b>. Všetko, čo označíš ako vadu, sa zozbiera dole v súhrne – hodí sa pri vyjednávaní o cene.</p>
+  <div class="legend">
+    <span><i class="lbl trik">Trik</i>vychytávka, ktorú bežný kupujúci nepozná</span>
+    <span><i class="lbl stop">Odíď</i>ak to nesedí, auto nekupuj</span>
+  </div>
+</div>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="row1">
+      <input id="car" type="text" placeholder="Ktoré auto?" autocomplete="off">
+      <div class="counts">
+        <span class="c-ok" title="V poriadku"><span class="k">OK</span><span id="nOk">0</span></span>
+        <a href="#suhrn" class="c-bad" title="Vady"><span class="k">Vady</span><span id="nBad">0</span></a>
+      </div>
+    </div>
+    <div class="progress"><i id="prog"></i></div>
+    <nav id="nav"></nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="sections"></div>
+
+  <section id="suhrn">
+    <div class="sh"><h2>Súhrn vád</h2><span class="sc" id="sumc"></span></div>
+    <p class="empty" id="empty">Zatiaľ žiadna vada.</p>
+    <ul id="problist"></ul>
+    <label class="nl" for="notes">Poznámky</label>
+    <textarea id="notes" placeholder="Čo povedal predajca, namerané hrúbky laku, cena, dohoda…"></textarea>
+    <div class="act" id="act">
+      <button type="button" id="reset">Nové auto</button>
+    </div>
+  </section>
+
+  <div class="src">
+    <h3>Zdroje</h3>
+    <ul>
+      <li><a href="https://www.rpzv.sk" target="_blank" rel="noopener">RPZV – Register prevádzkových záznamov vozidiel</a></li>
+      <li><a href="https://www.teraz.sk/koronavirus/udaje-o-ojazdenych-vozidlach-si-mozn/537721-clanok.html" target="_blank" rel="noopener">TASR – údaje o ojazdených vozidlách v RPZV</a></li>
+      <li><a href="https://www.tuvsud.com/sk-sk/informacne-centrum/tuv-sud-journal/sk/stk-a-automobilovy-priemysel/kupujete-jazdene-vozidlo" target="_blank" rel="noopener">TÜV SÜD – Kupujete jazdené vozidlo</a></li>
+      <li><a href="https://www.autojournal.cz/?p=245986" target="_blank" rel="noopener">AutoJournal – Jak poznat bourané auto</a></li>
+      <li><a href="https://tn.nova.cz/auto/clanek/564206-spoustu-nedostatku-odhalite-i-pohledem-20-rad-na-co-se-zamerit-pri-koupi-auta" target="_blank" rel="noopener">TN.cz – 20 rad pri kúpe auta</a></li>
+      <li><a href="https://tn.nova.cz/clanek/kupujete-ojete-auto-navod-jak-poznat-zda-ma-stoceny-tachometr.html" target="_blank" rel="noopener">TN.cz – ako poznať stočený tachometer</a></li>
+      <li><a href="https://www.carvertical.com/cz/blog/jak-zjistit-zda-melo-auto-nehodu" target="_blank" rel="noopener">carVertical – ako zistiť, či auto malo nehodu</a></li>
+      <li><a href="https://www.carvertical.com/cz/blog/jak-pouzivat-meric-tloustky-laku" target="_blank" rel="noopener">carVertical – meranie hrúbky laku</a></li>
+      <li><a href="https://www.dacemotorgroup.co.uk/blog/things-that-make-mechanics-instantly-trust-or-distrust-a-used-car" target="_blank" rel="noopener">Dace Motor Group – čomu mechanici neveria</a></li>
+      <li><a href="https://dailydot.com/used-car-seatbelt-check" target="_blank" rel="noopener">Daily Dot – trik s dátumom na páse</a></li>
+      <li><a href="https://en.arabgt.com/automotive-industry/what-to-check-when-buying-a-used-electric-car/" target="_blank" rel="noopener">ArabGT – kontrola jazdeného elektromobilu</a></li>
+      <li><a href="https://aviloo.com/en/blog/the-soh-of-an-ev-is-the-new-mileage" target="_blank" rel="noopener">AVILOO – stav batérie (SoH)</a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const T='trik', S='stop';
+const DATA=[
+ {id:'doma',name:'Doma',title:'Doma, pred obhliadkou',items:[
+  ['Vypýtaj si VIN a ŠPZ ešte pred cestou','Kto VIN nechce dať vopred, niečo skrýva. Bez VIN nikam nejdi.',S],
+  ['Over kilometre a škody v RPZV','Štátny Register prevádzkových záznamov vozidiel (<b>rpzv.sk</b>). Ukáže stav tachometra z STK, EK a servisov v čase, záznamy o škodách aj blokácie, lízing či exekúcie.',T],
+  ['Pri dovoze: platená história podľa VIN','carVertical, Cebia a podobne. Ukážu kilometre a škody z cudziny, často aj fotky z aukcií havarovaných áut.'],
+  ['Vygoogli VIN aj ŠPZ','Staré inzeráty zostávajú na webe. Rovnaké auto predávané pred rokom s vyšším nájazdom alebo fotky z aukcie búraných áut prezradia viac než predajca.',T],
+  ['Záložné právo a krádež','VIN over v Notárskom centrálnom registri záložných práv (<b>notar.sk</b>) a v pátraní po vozidlách na webe Polície SR (<b>minv.sk</b>). Auto na lízingu predajca nemôže predať bez súhlasu lízingovky.'],
+  ['Otázky do telefónu, odpovede si zapíš','Koľký majiteľ, kde servisované, prečo predáva, koľko kľúčov, servisná knižka, bolo búrané, čo treba opraviť. Na mieste sa spýtaj znova a porovnaj.',T],
+  ['Obhliadka za denného svetla a za sucha','Mokré a čerstvo umyté auto skryje rozdiely v laku aj škrabance. Povedz vopred, že chceš <b>studený motor</b> – nenaštartovaný od rána.',T],
+ ]},
+ {id:'zobrat',name:'Čo zobrať',title:'Čo si zobrať',items:[
+  ['Baterka','Do podbehov, pod auto, do motorového priestoru. Mobil stačí, samostatná je pohodlnejšia.'],
+  ['Magnet zabalený v handričke','Na plechu, kde nedrží, je pravdepodobne tmel. Handrička, aby nepoškriabal lak.'],
+  ['Hrúbkomer laku','Aj lacný stačí. Ide o porovnanie dielov medzi sebou, nie o presné čísla.'],
+  ['OBD čítačka a appka','Lacná Bluetooth ELM327 a appka typu Car Scanner. Ukáže uložené chyby a či ich niekto práve nevymazal.'],
+  ['Papierové utierky a rukavice','Na olejovú mierku a viečka.'],
+  ['Druhý človek','Pozerá brzdové svetlá, počúva zvuky zvonku a nedá sa ukecať ako ty.'],
+ ]},
+ {id:'prichod',name:'Príchod',title:'Hneď po príchode',items:[
+  ['Siahni na kapotu a výfuk','Skôr než predajca naštartuje. Teplý motor znamená, že nechcel, aby si videl studený štart – dym, klepanie, ťažké štartovanie.',T],
+  ['Pozri na zem, kde auto stálo','Čerstvé fľaky oleja, chladiacej kvapaliny alebo prevodového oleja.'],
+  ['Predajca = majiteľ z dokladov?','Meno v osvedčení časť II porovnaj s občianskym. „Predávam za kamaráta“ alebo neznámy prekupník je riziko. Auto by malo stáť na adrese predajcu, nie na parkovisku pri benzínke.',S],
+  ['Auto stojí rovno','Pozri z diaľky spredu aj zozadu. Jeden roh nižšie znamená prasknutú pružinu alebo zlý tlmič.'],
+ ]},
+ {id:'doklady',name:'Doklady',title:'Doklady a VIN',items:[
+  ['VIN všade rovnaké','Osvedčenie o evidencii časť I a II = štítok pod čelným sklom = štítok v B-stĺpiku = VIN vyrazené v karosérii (podľa značky pod sedadlom spolujazdca, na prepážke v motorovom priestore alebo v kufri).',S],
+  ['Okolie vyrazeného VIN je nedotknuté','Škrabance, iný lak, zvary alebo zvlnený plech okolo čísla sú dôvod okamžite odísť. Štítok s VIN má mať originálne nity, nie lepidlo.',S],
+  ['Platná STK a EK','Protokol z poslednej STK obsahuje stav kilometrov – porovnaj s tachometrom.'],
+  ['Servisná knižka sedí','Pečiatky rôznych servisov, kilometre plynulo rastú. <b>Všetky záznamy rovnakým perom a rukopisom = dopísané naraz.</b> Aspoň jeden servis over telefonicky. Autorizovaný servis vidí históriu podľa VIN aj v systéme.',T],
+  ['Nálepky o výmene oleja a rozvodov','Pod kapotou, na stĺpiku dverí alebo na rozvodoch. Kilometre a dátum na nálepke porovnaj s tachometrom – na nálepku sa pri stáčaní zabúda.',T],
+  ['Dva kľúče','Chýbajúci kľúč je drahý a je otázka, kde je. Niektoré značky (napr. BMW) ukladajú kilometre aj do kľúča – servis ich vie prečítať.',T],
+  ['Pri dovezenom aute protokol z kontroly originality','Je povinná pri prihlásení dovezeného auta. Overuje VIN, číslo motora a zásahy do auta.'],
+ ]},
+ {id:'karoseria',name:'Karoséria',title:'Karoséria a lak',items:[
+  ['Pohľad pozdĺž bokov proti svetlu','Pozeraj na odraz po celej dĺžke auta. Vlny, nerovnosti a iný odtieň alebo lesk jedného dielu prezradia opravu.'],
+  ['Medzery medzi dielmi','Kapota–blatník, dvere–dvere, kufor–blatník. Majú byť rovnomerné a rovnaké vľavo aj vpravo. Diel nemá vyčnievať ani byť zapadnutý.'],
+  ['Hrúbkomer na každom diele','Originál býva zhruba <b>80–160 µm</b>, dolakovaný diel <b>150–260 µm</b>, nad <b>300 µm</b> je pod lakom tmel. Dôležitý je rozdiel medzi dielmi, nie jedno číslo. Hliníkové diely magnetický hrúbkomer nezmeria.',T],
+  ['Magnet na podozrivých miestach','Spodky dverí, lemy blatníkov, prahy. Kde na oceľovom plechu nedrží, je hrubá vrstva tmelu.'],
+  ['Skrutky blatníkov, pántov kapoty a dverí','Odretá farba alebo stopy po kľúči znamenajú, že diel bol dole – teda vymieňaný alebo opravovaný.',T],
+  ['Prestrek farby','Farba na gumách, tesneniach, plastových lištách, výfuku alebo štítkoch. Ostrá hrana farby po maskovacej páske v drážkach a na hranách dverí.',T],
+  ['Tesniaca hmota vo švíkoch','Otvor kapotu, kufor a dvere. Z výroby je hmota rovnomerná, ako od robota. Ručne natretá, hrudkovitá alebo iného odtieňa znamená opravu.',T],
+  ['Predný nosník a podbehy','Pod kapotou: nosník so zámkom kapoty, uchytenia svetiel a chladiča. Zvary, ohnutý plech, nové diely v starom aute. Chýbajúce výrobné štítky pod kapotou (klimatizácia, kód farby) = predok sa menil.',T],
+  ['Kufor bez koberca','Vyber koberec aj rezervu. Vrásky na plechu, zvary, čerstvý lak alebo voda a hrdza v jamke na rezervu prezradia zadný náraz.',T],
+  ['Hrdza','Lemy blatníkov, spodky dverí, prahy, zdvíhacie body, okolie kufra a miesta pod gumami tesnení.'],
+ ]},
+ {id:'nehoda',name:'Stopy nehody',title:'Sklá, svetlá, pásy, airbagy',note:'Diely, ktoré sa po nehode menia, nesú dátum výroby. Auto sa vyrába z dielov z posledných mesiacov – diel novší ako auto bol vymenený.',items:[
+  ['Dátum na bezpečnostných pásoch','Vytiahni pás celý, štítok s dátumom je zvyčajne pri spodnom uchytení. Pás vyrobený pár mesiacov pred autom je v poriadku. <b>Pás novší ako auto bol vymenený</b> – najčastejšie po nehode, keď vystrelili predpínače. Porovnaj predné pásy so zadnými, zadné sa skoro nikdy nemenia.',T],
+  ['Dátum na sklách','Všetky sklá majú mať rovnakého výrobcu a rok. Najčastejší kód: číslica = posledná číslica roka, bodky určujú mesiac. Bodky <b>pred</b> číslicou: mesiac = 7 − počet bodiek (<span class="code">•••• 9</span> = marec 2019). Bodky <b>za</b> číslicou: mesiac = 13 − počet bodiek (<span class="code">9 ••</span> = november 2019). Vymenené čelné sklo je bežné (kamienky), vymenené bočné alebo zadné sklo, prípadne viac skiel na jednej strane, je otázka.',T],
+  ['Svetlomety rovnaké','Jedno svetlo výrazne čírejšie, inej značky alebo s iným dátumom na plaste bolo vymenené po náraze. Voda a kal vo svetle = zlé tesnenie alebo lacná náhrada.'],
+  ['Kontrolka airbagu','Po zapnutí zapaľovania sa rozsvieti a po pár sekundách <b>sama</b> zhasne. Ak nesvieti vôbec alebo zhasne presne naraz s inou kontrolkou, môže byť premostená a airbag chýbať.',S],
+  ['Kryty airbagov','Volant a palubná doska: rovnomerné škáry, rovnaká štruktúra, lesk a odtieň ako okolie. Iná textúra palubnej dosky na strane spolujazdca znamená výmenu po výstrele airbagu.',T],
+ ]},
+ {id:'kolesa',name:'Kolesá a spodok',title:'Pneumatiky, brzdy, podvozok',items:[
+  ['Vek pneumatík (DOT)','Posledné 4 číslice na boku = týždeň a rok (<span class="code">2321</span> = 23. týždeň 2021). Staršie ako 6 rokov počítaj s výmenou. Auto s „nízkym“ nájazdom, ktoré má už druhú sadu letných pneumatík, má najazdené viac.',T],
+  ['Rovnaké pneumatiky na náprave','Jedna odlišná pneumatika = defekt alebo náraz do kolesa. Spýtaj sa prečo.'],
+  ['Opotrebenie dezénu','Vnútorná hrana alebo jedna strana = zlá geometria, možno po náraze. Stred = prefúkané. Obe hrany = podhustené. Zúbkovanie = tlmiče.'],
+  ['Disky','Odreté, prehnuté, prasknuté alebo čerstvo prelakované.'],
+  ['Brzdové kotúče a doštičky','Cez lúče disku: hlboké drážky, výrazný lem na okraji, hrdza. Doštičky aspoň 3–4 mm.'],
+  ['Tlmiče','Zatlač na každý roh auta a pusť. Auto sa má raz vrátiť a ustáliť, nie hojdať.'],
+  ['Pod auto s baterkou','Olej na motore a prevodovke, roztrhané manžety poloosí, ohnuté diely, hrdzavý výfuk. <b>Čerstvý podvozkový náter na staršom aute</b> často zakrýva hrdzu alebo zvary.',T],
+ ]},
+ {id:'motor',name:'Motor',title:'Motorový priestor (studený motor)',items:[
+  ['Prirodzene zaprášený, nie vyleštený','Bežný prach je v poriadku. Umytý a nastriekaný lesklý motor môže skrývať úniky oleja.',T],
+  ['Olejová mierka','Hladina medzi min a max. Kovové šupinky v oleji sú zlé. Úplne čerstvý olej tesne pred predajom nič nedokazuje.'],
+  ['Spodok viečka oleja','Hnedobiela „majonéza“ = voda v oleji, možno tesnenie hlavy. Výnimka: auto jazdené v zime len na krátke trasy môže mať trochu kondenzátu.',T],
+  ['Chladiaca kvapalina','Len pri studenom motore! Čistá, správnej farby. Olejová škvrna, hnedá hrdzavá farba alebo zápach výfukových plynov z nádržky = problém s tesnením hlavy.',T],
+  ['Hadice a remeň','Popraskané, nafúknuté alebo mastné hadice, rozstrapkaný remeň. Úniky okolo veka ventilov a turba.'],
+  ['Akumulátor','Dátum na batérii, zoxidované zelené svorky.'],
+ ]},
+ {id:'interier',name:'Interiér',title:'Interiér a elektronika',items:[
+  ['Opotrebenie sedí s kilometrami','Volant, hlavica radenia, pedále, ľavý bok sedadla vodiča, tlačidlá okien. Pri sto tisíc kilometroch by volant nemal byť vyleštený do lesku.'],
+  ['Nové gumy pedálov alebo nový poťah volantu','Na aute s „nízkym“ nájazdom je to typické maskovanie stočených kilometrov.',T],
+  ['Zápach','Pleseň a vlhkosť, silný osviežovač (niečo prekrýva), cigarety.'],
+  ['Zatopené auto','Zdvihni koberec v predných nohách a v kufri: vlhko, piesok, bahno. Hrdzavé skrutky koľajníc sedadiel a hrdzavé kovové diely pod palubnou doskou.',S],
+  ['Fľaky na strope a čalúnení dverí','Zateká – upchaté odtoky strešného okna alebo zlé tesnenie skla.'],
+  ['Kontrolky pri zapnutí zapaľovania','Rozsvietia sa všetky a potom zhasnú. Motor, ABS, ESP, airbag. Kontrolka, ktorá nesvieti vôbec, môže byť vytiahnutá.'],
+  ['Všetko elektrické funguje','Všetky okná, zrkadlá, centrál z oboch kľúčov, klimatizácia (fúka studené aj počas jazdy), kúrenie, vyhrievanie sedadiel a skiel, všetky svetlá vrátane brzdových, smerovky, stierače a ostrekovače, klaksón, rádio, navigácia, parkovacie senzory, kamera, strešné okno.'],
+  ['OBD: uložené chyby','Pripoj čítačku a vypíš chyby zo všetkých jednotiek, ktoré appka zvládne.'],
+  ['OBD: neboli chyby práve vymazané?','V appke pozri pripravenosť emisných testov (readiness monitors). Ak väčšina nie je pripravená, niekto chyby nedávno vymazal – kontrolka sa po pár desiatkach kilometrov vráti.',T],
+  ['Kilometre v iných jednotkách','Diagnostikou sa dá na mnohých autách porovnať stav kilometrov uložený v prevodovke, ABS či motorovej jednotke s tachometrom. Rozdiel = stáčané. Nie každá appka a auto to umožní, autorizovaný servis áno.',T],
+ ]},
+ {id:'start',name:'Štart',title:'Studený štart',items:[
+  ['Naštartuje hneď','Štartér točí ľahko, motor naskočí bez prepínania kľúčom viackrát.'],
+  ['Farba dymu','<b>Modrý</b> = spaľuje olej. <b>Čierny</b> = zlé spaľovanie, pri naftovom motore vstrekovače alebo turbo. <b>Biely hustý</b>, sladko páchnuci a stále aj po zahriatí = chladiaca kvapalina. Krátka biela para v zime je normálna.'],
+  ['Zvuky pri štarte','Rachot prvé sekundy (pri niektorých motoroch natiahnutá rozvodová reťaz), klepanie, pískanie remeňa.'],
+  ['Dvojhmotný zotrvačník (najmä diesel)','Rachotanie na voľnobehu, ktoré pri stlačení spojky stíchne, a buchnutie pri vypnutí motora.',T],
+  ['Pokojný voľnobeh','Otáčky nekolíšu, motor sa netrasie.'],
+ ]},
+ {id:'jazda',name:'Jazda',title:'Skúšobná jazda',note:'Aspoň 20–30 minút: mesto, nerovnosti, okreska aj rýchlejšia cesta. Šoféruj ty, nie predajca.',items:[
+  ['Spojka','Zaberá vysoko = opotrebovaná. Test: 3. alebo 4. stupeň pri asi 50 km/h, prudko pridaj plyn. Ak otáčky letia hore a auto nezrýchľuje, spojka prekĺzava.',T],
+  ['Radenie','Všetky stupne vrátane spiatočky bez škrípania. Automat a DSG: plynulý rozjazd, žiadne šklbanie pri pomalom posúvaní, žiadne údery pri preraďovaní.'],
+  ['Ide rovno','Na rovnej ceste na chvíľu povoľ volant. Auto má ísť rovno a volant má byť pri jazde rovno vystredený.'],
+  ['Brzdenie','Prudké brzdenie z 50–60 km/h: auto nesťahuje do strany, volant ani pedál nevibrujú, pedál je pevný.'],
+  ['Nerovnosti a retardéry','Klepanie alebo búchanie z podvozku.'],
+  ['Plný rejd do kruhu','Pomaly na plný rejd na obe strany. Cvakanie = kĺby poloosí.',T],
+  ['Vyššia rýchlosť','Vibrácie volantu, hučanie ložiska (mení sa pri zatáčaní), pískanie turba, hluk vetra.'],
+  ['Teplota motora','Ustáli sa a nekolíše.'],
+  ['Ručná brzda a kopec','Drží auto v kopci, rozjazd do kopca bez problémov.'],
+ ]},
+ {id:'po',name:'Po jazde',title:'Po jazde',items:[
+  ['Pod autom a pod kapotou znova','Nechaj motor bežať. Kvapká niečo? Zápach spáleného oleja alebo sladký zápach chladiva?'],
+  ['Kontrolky','Nerozsvietilo sa nič nové? Ak máš OBD, vypíš chyby ešte raz.'],
+  ['Výfuk na teplo','Dymí ešte?'],
+ ]},
+ {id:'ev',name:'Elektromobil',title:'Elektromobil a plug-in hybrid',note:'Pri aute so spaľovacím motorom preskoč.',items:[
+  ['Stav batérie (SoH)','Report z autorizovaného servisu alebo nezávislý test (napr. AVILOO). Číslo z palubného počítača je len odhad. Zhruba 80–100 % je výborné.'],
+  ['Dojazd pri 100 %','Nechaj si ukázať, alebo popros predajcu, nech auto pred obhliadkou nabije do plna.'],
+  ['Test na rýchlonabíjačke','Ak sa dá, choď s autom na DC nabíjačku. Výkon pri nízkom stave nabitia porovnaj s tým, čo má model dávať. Výrazne nižší výkon môže znamenať problém s batériou alebo jej chladením.',T],
+  ['Nabíjací port','Krytka, kontakty bez stôp po spálení, zámok konektora funguje.'],
+  ['Káble v kufri','Kábel Type 2 a prenosná nabíjačka do zásuvky. Ak chýbajú, je to drahé.'],
+  ['Spodok batérie','Škrabance, priehlbiny, poškodený kryt po náraze na obrubník alebo kameň.',S],
+  ['Záruka na batériu','Zvyčajne 8 rokov alebo 160 000 km. Over dátum prvej registrácie a podmienky prechodu záruky na ďalšieho majiteľa.'],
+  ['Tepelné čerpadlo','Má alebo nemá – v zime to robí veľký rozdiel v dojazde.'],
+  ['12 V batéria','Slabá 12 V batéria robí na elektromobile čudné chyby a hlásenia.'],
+  ['Kotúče a pneumatiky','Na elektromobile brzdí hlavne rekuperácia, kotúče preto často hrdzavejú. Pneumatiky sa pre vyššiu hmotnosť opotrebujú rýchlejšie.'],
+  ['Zvolávacie akcie a softvér','V autorizovanom servise podľa VIN: otvorené servisné akcie, aktualizácie, výmeny batérie alebo modulov.'],
+ ]},
+ {id:'kupa',name:'Kúpa',title:'Pred podpisom a platbou',items:[
+  ['Pri pochybnostiach do servisu','Nezávislý servis alebo technik na obhliadky áut, ideálne špecializovaný na značku. Kto odmietne nechať auto skontrolovať, niečo skrýva.',S],
+  ['Kúpna zmluva','VIN, ŠPZ, stav kilometrov, cena, zoznam zistených vád, údaje predávajúceho z občianskeho. Ak predajca tvrdí, že auto nebolo búrané a nemá ťarchy, nech to stojí v zmluve.'],
+  ['Platba','Radšej prevodom. Žiadna záloha za auto, ktoré si nevidel.'],
+  ['Prepis a PZP','Dohodnite, kto a kedy ide na dopravný inšpektorát. Povinné zmluvné poistenie uzatvor na seba pred odjazdom.'],
+ ]},
+];
+
+const KEY='obhliadka-auta-v1';
+let st={car:'',notes:'',s:{}};
+try{const r=localStorage.getItem(KEY);if(r)st=Object.assign(st,JSON.parse(r));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+
+const secEl=document.getElementById('sections'), nav=document.getElementById('nav');
+let total=0;
+DATA.forEach(sec=>{
+  const s=document.createElement('section'); s.id=sec.id;
+  let h=`<div class="sh"><h2>${sec.title}</h2><span class="sc" id="c-${sec.id}"></span></div>`;
+  if(sec.note) h+=`<p class="snote">${sec.note}</p>`;
+  h+='<ul class="items">';
+  sec.items.forEach((it,i)=>{
+    const id=sec.id+'-'+i; total++;
+    const lbl=it[2]===T?'<i class="lbl trik">Trik</i>':it[2]===S?'<i class="lbl stop">Odíď</i>':'';
+    h+=`<li class="it" data-id="${id}"><div><p class="t">${lbl}${it[0]}</p><p class="d">${it[1]}</p></div>
+      <div class="btns"><button type="button" class="b-ok" id="ok-${id}" aria-pressed="false">OK</button><button type="button" class="b-bad" id="bad-${id}" aria-pressed="false">Vada</button></div></li>`;
+  });
+  h+='</ul>'; s.innerHTML=h; secEl.appendChild(s);
+  const a=document.createElement('a'); a.href='#'+sec.id; a.textContent=sec.name; a.dataset.sec=sec.id; nav.appendChild(a);
+});
+const sa=document.createElement('a'); sa.href='#suhrn'; sa.textContent='Súhrn'; sa.dataset.sec='suhrn'; nav.appendChild(sa);
+
+function render(){
+  let ok=0,bad=0; const probs=[];
+  DATA.forEach(sec=>{
+    let done=0;
+    sec.items.forEach((it,i)=>{
+      const id=sec.id+'-'+i, v=st.s[id], li=document.querySelector(`li[data-id="${id}"]`);
+      li.classList.toggle('ok',v==='ok'); li.classList.toggle('bad',v==='bad');
+      li.querySelector('.b-ok').setAttribute('aria-pressed',v==='ok');
+      li.querySelector('.b-bad').setAttribute('aria-pressed',v==='bad');
+      if(v){done++; if(v==='ok')ok++; else {bad++; probs.push([sec.name,it[0],id]);}}
+    });
+    document.getElementById('c-'+sec.id).textContent=done+' / '+sec.items.length;
+    nav.querySelector(`[data-sec="${sec.id}"]`).classList.toggle('done',done===sec.items.length);
+  });
+  document.getElementById('nOk').textContent=ok;
+  document.getElementById('nBad').textContent=bad;
+  document.getElementById('prog').style.width=((ok+bad)/total*100)+'%';
+  document.getElementById('sumc').textContent=(ok+bad)+' / '+total+' skontrolovaných';
+  const pl=document.getElementById('problist');
+  pl.innerHTML=probs.map(p=>`<li><span class="ps">${p[0]}</span><a class="pt" href="#" data-go="${p[2]}" style="text-decoration:none">${p[1]}</a></li>`).join('');
+  document.getElementById('empty').hidden=probs.length>0;
+}
+secEl.addEventListener('click',e=>{
+  const b=e.target.closest('.btns button'); if(!b) return;
+  const id=b.closest('li').dataset.id, v=b.classList.contains('b-ok')?'ok':'bad';
+  if(st.s[id]===v) delete st.s[id]; else st.s[id]=v;
+  save(); render(); keepAwake();
+});
+document.getElementById('problist').addEventListener('click',e=>{
+  const a=e.target.closest('[data-go]'); if(!a) return; e.preventDefault();
+  document.querySelector(`li[data-id="${a.dataset.go}"]`).scrollIntoView({block:'center'});
+});
+const car=document.getElementById('car'), notes=document.getElementById('notes');
+car.value=st.car; notes.value=st.notes;
+car.addEventListener('input',()=>{st.car=car.value;save();});
+notes.addEventListener('input',()=>{st.notes=notes.value;save();});
+
+const act=document.getElementById('act');
+function resetUI(){
+  act.innerHTML='<button type="button" id="reset">Nové auto</button>';
+  document.getElementById('reset').onclick=()=>{
+    act.innerHTML='<span>Vymazať všetky odpovede a poznámky?</span><button type="button" class="danger" id="yes">Vymazať</button><button type="button" id="no">Nechať</button>';
+    document.getElementById('yes').onclick=()=>{st={car:'',notes:'',s:{}};save();car.value='';notes.value='';render();resetUI();window.scrollTo(0,0);};
+    document.getElementById('no').onclick=resetUI;
+  };
+}
+resetUI();
+
+// zvýraznenie aktuálnej sekcie v navigácii
+const secs=[...document.querySelectorAll('section')];
+function onScroll(){
+  let cur=secs[0].id;
+  for(const s of secs){ if(s.getBoundingClientRect().top<160) cur=s.id; }
+  nav.querySelectorAll('a').forEach(a=>{
+    const on=a.dataset.sec===cur; a.classList.toggle('on',on);
+    if(on && a._last!==true){ a.scrollIntoView({inline:'nearest',block:'nearest'}); }
+    a._last=on;
+  });
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+
+// obrazovka nezhasne počas obhliadky (ak to zariadenie dovolí)
+let wl=null;
+async function keepAwake(){ if(wl||!('wakeLock' in navigator)) return; try{ wl=await navigator.wakeLock.request('screen'); wl.addEventListener('release',()=>{wl=null;}); }catch(e){} }
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && Object.keys(st.s).length) keepAwake(); });
+
+render(); onScroll();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="sk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nabíjacie stanice — projekt, povolenie, výstavba a kolaudácia | Studio09</title>
+<meta name="description" content="Projekt, pripojenie k sieti, povolenie, výstavba a kolaudácia nabíjacích staníc pre čerpacie stanice, firmy, obce a developerov, po dohode aj pre súkromné osoby.">
+<link rel="canonical" href="https://studio09.sk/nabijacie-stanice/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0D1220">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://studio09.sk/nabijacie-stanice/">
+<meta property="og:image" content="https://studio09.sk/nabijacie-stanice/stanica.jpg">
+<meta property="og:locale" content="sk_SK">
+<meta property="og:site_name" content="Studio09">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Výstavba nabíjacích staníc | Studio09">
+<meta property="og:description" content="Projekt, pripojenie k sieti, povolenie, výstavba a kolaudácia nabíjacích staníc pre čerpacie stanice, firmy, obce a developerov, po dohode aj pre súkromné osoby.">
+<link rel="preload" href="/fonts/archivo-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../spolocne.css">
+<link rel="stylesheet" href="../poradna/poradna.css">
+<style>
+/* ══ NABÍJACIE STANICE — samostatná časť webu pre firmy a obce ══
+   Hlavička, päta a tlačidlá sú spoločné s Poradňou (poradna.css). */
+body{background:var(--l1)}
+.ns-sec{padding:96px 0}
+.ns-light{background:var(--l1);color:var(--ink)}
+.ns-ink{background:var(--ink);color:var(--l1)}
+.ns-ink2{background:var(--ink2);color:var(--l1)}
+.shd{display:flex;align-items:baseline;gap:16px;margin-bottom:40px}
+.shd h2{font-family:Archivo;font-weight:800;text-transform:uppercase;font-size:clamp(23px,3vw,40px);line-height:.94;letter-spacing:-.03em}
+.shd .rule{flex:1;height:1px;background:currentColor;opacity:.18;min-width:30px}
+.p{font-family:Inter;font-weight:400;font-size:15.5px;line-height:1.7}
+.ns-light .p{color:var(--gr1)}.ns-ink .p,.ns-ink2 .p{color:var(--gr3)}
+
+/* úvod */
+.ns-hero{padding:0;background:var(--l1);color:var(--ink);overflow:hidden}
+.ns-hero .back{color:var(--tyr3);position:relative}
+.ns-top{position:relative;padding-top:118px}
+.ns-top .wrap{position:relative;z-index:1}
+.ns-hone{display:flex;align-items:center;min-height:500px;padding:10px 0 70px}
+.ns-hone>div{max-width:560px}
+/* fotka v úvode — šikmý rez ako na titulke */
+.ns-bg{position:absolute;top:0;right:0;bottom:0;width:50%;background:#D3DEEF url(stanica.jpg) 55% 62%/cover no-repeat;
+ clip-path:polygon(24% 0,100% 0,100% 100%,0 100%)}
+.ns-hone{padding-bottom:84px}
+.spol{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 56px;align-items:center;padding:30px 0 34px;border-top:2px solid var(--ink)}
+.spol p{font-family:Archivo;font-weight:700;font-size:clamp(16px,1.5vw,19px);line-height:1.4;letter-spacing:-.015em;color:var(--ink);max-width:30em}
+.loga{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 24px;min-width:500px}
+.loga small{flex-basis:100%;margin-bottom:8px;font-family:Archivo;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gr2);}
+.loga img{width:auto;max-width:100%;display:block}
+.loga img[alt="GreenWay"]{transform:translateY(2px)}
+.loga .wmk{font-family:Archivo;font-weight:900;font-size:19px;letter-spacing:-.02em;color:var(--gr1);white-space:nowrap}
+.ns-hero h1{font-family:Archivo;font-weight:900;text-transform:uppercase;font-size:clamp(32px,4.2vw,58px);line-height:.92;letter-spacing:-.04em}
+.ns-hero h1 em{font-style:normal;display:block;color:var(--tyr3)}
+.ns-hero .lead{font-family:Inter;font-weight:400;font-size:17px;line-height:1.68;color:var(--gr1);margin-top:24px;max-width:30em}
+.ns-hero .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+.ns-hero .btn.ghost{color:var(--ink) !important;border-color:rgba(13,18,32,.28) !important}
+.ns-hero .btn.ghost:hover{border-color:var(--tyr3) !important;color:var(--tyr3) !important}
+
+
+
+/* postup — jedna linka, bez číslovania */
+.trk{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 26px}
+.trk:before{content:"";position:absolute;left:0;right:0;top:52px;height:2px;background:var(--ink)}
+.st h3{font-family:Archivo;font-weight:800;text-transform:uppercase;font-size:15px;letter-spacing:-.01em;line-height:1.15;min-height:36px}
+.st .nd{position:relative;width:16px;height:16px;margin:8px 0 22px;background:var(--l1);border:2px solid var(--ink);transform:rotate(45deg)}
+.st:last-child .nd{background:var(--tyr3);border-color:var(--tyr3)}
+.st .p{font-size:14.5px;line-height:1.62}
+
+/* čo staviame */
+.kind{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 40px}
+.kd{border-top:2px solid var(--tyr);padding-top:20px}
+.kd h3{font-family:Archivo;font-weight:800;text-transform:uppercase;font-size:18px;letter-spacing:-.015em;line-height:1.1}
+.kd .p{margin-top:12px;font-size:14.8px}
+
+/* otázky */
+.ns-light .faq{border-top-color:rgba(13,18,32,.14);max-width:860px}
+.ns-light .faq details{border-bottom-color:rgba(13,18,32,.1)}
+.ns-light .faq summary:hover{color:var(--tyr3)}
+.ns-light .faq summary::after{color:var(--tyr3)}
+.ns-light .faq details>p{font-family:Inter;font-weight:400;font-size:15px;line-height:1.7;color:var(--gr1);max-width:44em}
+
+/* dopyt */
+.kk{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:70px;align-items:end}
+.kk .lead{font-family:Inter;font-weight:400;font-size:16px;line-height:1.65;color:var(--gr3);margin-top:-14px;max-width:34em}
+.cf{margin-top:28px;max-width:640px}
+.cf .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{margin-top:14px}
+.fld label{display:block;font-family:Archivo;font-weight:700;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--tyr);margin-bottom:7px}
+.in{border:1.5px solid rgba(237,241,248,.22);background:rgba(13,18,32,.45);padding:2px 14px;transition:border-color .22s}
+.in:focus-within{border-color:var(--tyr)}
+.in input,.in textarea{width:100%;background:transparent;border:0;outline:0;color:var(--l1);font-family:Archivo;font-weight:600;font-size:15.5px;padding:12px 0;resize:vertical}
+.in input::placeholder,.in textarea::placeholder{color:rgba(175,189,214,.4);font-weight:400}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.gchk{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-family:Inter;font-weight:400;font-size:13px;line-height:1.55;color:var(--gr3);cursor:pointer}
+.gchk input{-webkit-appearance:none;appearance:none;width:20px;height:20px;margin:0;flex:none;display:grid;place-items:center;cursor:pointer;border:1.5px solid rgba(237,241,248,.4);background:transparent}
+.gchk input::after{content:"";width:9px;height:5px;border-left:2px solid #0D1220;border-bottom:2px solid #0D1220;transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.gchk input:checked{background:#1CF0C0;border-color:#1CF0C0}.gchk input:checked::after{opacity:1}
+.gchk.bad input,.in.bad{border-color:#FF8D98 !important}
+.gerr{font-family:Inter;font-size:14px;color:#FF8D98;margin-top:10px}
+.ns-hero,.ns-light{--gr2:#4E5B74}
+.gchk a{color:var(--tyr)}
+.gerr{color:#FF8A8A;font-family:Inter;font-size:13.5px;margin-top:10px;min-height:1px}
+.cf .btn{margin-top:20px;cursor:pointer}
+.sent{margin-top:20px;font-family:Archivo;font-weight:700;color:var(--tyr)}
+.lines .kr{padding:16px 0;border-bottom:1px solid rgba(237,241,248,.1)}
+.lines .kr:first-child{border-top:1px solid rgba(237,241,248,.1)}
+.lines small{display:block;font-family:Archivo;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gr2);margin-bottom:5px}
+.lines a{font-family:Archivo;font-weight:800;font-size:17px;color:var(--l1);text-decoration:none}
+.lines a:hover{color:var(--tyr)}
+.gdpr{margin-top:12px;font-family:Inter;font-weight:400;font-size:12.5px;line-height:1.6;color:var(--gr2);max-width:640px}
+.gdpr summary{cursor:pointer;color:var(--gr3)}
+
+/* označenie časti webu v hlavičke */
+
+.hsec{margin:0 auto 0 18px;padding-left:18px;border-left:1px solid rgba(237,241,248,.22);font-family:Archivo;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--tyr)}
+@media(max-width:600px){.hsec{display:none}}
+
+/* spodná lišta na mobile — len dopyt a WhatsApp, autá sem nepatria */
+.nsbar{display:none}
+footer{padding-bottom:48px}
+
+@media(max-width:1000px){
+ .spol{grid-template-columns:1fr}
+ .loga{min-width:0;max-width:520px}
+ .ns-top{padding-top:450px}
+ .ns-hone{min-height:0;padding:22px 0 56px}
+ .ns-bg{width:100%;height:400px;bottom:auto;background-position:55% 64%;clip-path:polygon(0 0,100% 0,100% 76%,0 100%)}
+ .trk{grid-template-columns:1fr;gap:0}
+ .trk:before{left:7px;right:auto;top:8px;bottom:8px;width:2px;height:auto}
+ .st{display:grid;grid-template-columns:16px 1fr;column-gap:22px;padding-bottom:26px}
+ .st .nd{grid-row:1 / span 2;margin:2px 0 0}
+ .st h3{min-height:0}
+ .st .p{margin-top:6px}
+ .kind{grid-template-columns:1fr;gap:28px}
+ .kk{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:700px){
+ .ns-sec{padding:68px 0}
+ .ns-top{padding-top:372px}
+ .ns-bg{height:330px}
+ .ns-hero .lead{font-size:16px}
+ .refs{grid-template-columns:1fr}
+ .ref{padding:28px 22px;min-height:0}
+ .cf .g2{grid-template-columns:1fr;gap:0}
+ .cf .g2 .fld:first-child{margin-top:0}
+ .ns-hone{padding-bottom:52px}
+ .loga{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));justify-items:center;row-gap:22px;max-width:340px}
+ .loga small{grid-column:1/-1;justify-self:start}
+ .nsbar{display:flex;position:fixed;left:8px;right:8px;bottom:10px;z-index:70;gap:6px;padding:5px;
+  background:rgba(11,15,26,.8);backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5);
+  border:1px solid rgba(237,241,248,.14);box-shadow:0 20px 46px -14px rgba(0,0,0,.75);transition:transform .3s,opacity .3s}
+ .nsbar.skry{transform:translateY(130%);opacity:0}
+ .nsbar a{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 12px;text-decoration:none;
+  font-family:Archivo;font-weight:800;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+ .nsbar .go{flex:1;background:var(--tyr);color:var(--ink)}
+ .nsbar .wa{color:var(--l1);border:1px solid rgba(237,241,248,.22)}
+ .nsbar svg{width:18px;height:18px}
+ footer{padding-bottom:100px}
+}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "name": "Výstavba a povolenie nabíjacích staníc", "serviceType": "Projekt, povolenie, pripojenie k sieti, výstavba a kolaudácia nabíjacích staníc pre elektromobily", "areaServed": {"@type": "Country", "name": "Slovensko"}, "url": "https://studio09.sk/nabijacie-stanice/", "provider": {"@type": "Organization", "name": "Studio09 s.r.o.", "url": "https://studio09.sk/", "email": "info@studio09.sk", "telephone": "+421908714517"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Potrebuje nabíjacia stanica povolenie?", "acceptedAnswer": {"@type": "Answer", "text": "Závisí od výkonu, umiestnenia a od toho, či treba novú prípojku alebo trafostanicu. Wallbox na existujúcom prívode v garáži povolenie väčšinou nepotrebuje, verejná stanica s novou prípojkou áno. Pri obhliadke vám povieme, čo bude treba."}}, {"@type": "Question", "name": "Čo trvá najdlhšie?", "acceptedAnswer": {"@type": "Answer", "text": "Zvyčajne pripojenie k distribučnej sieti a vyjadrenia dotknutých orgánov. Samotná výstavba trvá kratšie, preto žiadosť o pripojenie podávame hneď na začiatku."}}]}]}</script>
+</head><body>
+<header>
+ <a class="lg" href="../" aria-label="Studio09 — úvod">
+  <div class="sh">
+   <svg class="s-red" viewBox="0 0 46 54" fill="none"><g transform="translate(-2,1)"><path d="M6 3H40Q44 3 44 7V33L23 51L2 33V7Q2 3 6 3Z" fill="none" stroke="rgba(255,50,50,.32)" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 24L23 14L33 24" stroke="rgba(255,50,50,.22)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 31L23 21L33 31" stroke="rgba(255,50,50,.32)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+   <svg class="s-blue" viewBox="0 0 46 54" fill="none"><g transform="translate(2,-1)"><path d="M6 3H40Q44 3 44 7V33L23 51L2 33V7Q2 3 6 3Z" fill="none" stroke="rgba(50,170,255,.32)" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 24L23 14L33 24" stroke="rgba(50,170,255,.22)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 31L23 21L33 31" stroke="rgba(50,170,255,.32)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+   <svg class="s-base" viewBox="0 0 46 54" fill="none"><path d="M4 1H42Q46 1 46 5V33L23 52L0 33V5Q0 1 4 1Z" fill="none" stroke="currentColor" stroke-opacity=".14" stroke-width=".8" stroke-linejoin="round"/><path d="M6 3H40Q44 3 44 7V33L23 51L2 33V7Q2 3 6 3Z" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 6H37Q41 6 41 10V32L23 48L5 32V10Q5 6 9 6Z" fill="none" stroke="currentColor" stroke-opacity=".2" stroke-width=".8" stroke-linejoin="round"/><g><path d="M13 24L23 14L33 24" stroke="currentColor" stroke-opacity=".28" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 31L23 21L33 31" stroke="currentColor" stroke-opacity=".55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 38L23 28L33 38" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+  </div>
+  <div class="lock"><div class="wm">STUDIO<em>09</em></div><span class="tagline">Import. Electric.</span></div>
+ </a>
+ <span class="hsec">Nabíjacie stanice</span>
+ <!-- MENU:START -->
+ <nav class="hnav" id="hnav" aria-label="Hlavné menu"><a href="../" data-k="uvod">Ponuka</a><a href="../#sluzby" data-k="sluzby">Služby</a><a href="../nabijacie-stanice/" data-k="stanice" class="on">Nabíjacie stanice</a><a href="../poradna/" data-k="poradna">Poradňa</a><a href="../#nastroje" data-k="nastroje">Kalkulačka</a><a href="../#kontakt" data-k="kontakt">Kontakt</a></nav>
+ <!-- MENU:END -->
+ <div class="hbtns">
+  <a class="hb wa" href="https://wa.me/421908714517" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1112 20.2z"/></svg><em>WhatsApp</em></a>
+  <a class="hb" href="mailto:info@studio09.sk" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3.5 6h17v12h-17z"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><em>E-mail</em></a>
+  <div class="hsoc"><a href="https://www.facebook.com/studio09.sk" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.6 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21z"/></svg></a><a href="https://www.instagram.com/studio09.sk/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.9"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></a></div>
+ </div>
+</header>
+<main>
+
+<section class="ns-hero">
+ <div class="ns-top">
+  <div class="ns-bg" role="img" aria-label="Nabíjacie stanice v Bratislave"></div>
+ <div class="wrap">
+ <a class="back" href="../"><svg class="arw l" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg> Späť na web</a>
+ <div class="ns-hone">
+  <div>
+   <h1>Výstavba nabíjacích staníc</h1>
+   <p class="lead">Projekt, pripojenie k&nbsp;sieti, povolenie, výstavba a&nbsp;kolaudácia. Pre čerpacie stanice, firmy, obce a&nbsp;developerov, po dohode aj pre súkromné osoby.</p>
+   <div class="row"><a class="btn" href="#dopyt">Poslať lokalitu</a><a class="btn ghost" href="https://wa.me/421908714517" target="_blank" rel="noopener">WhatsApp</a></div>
+  </div>
+ </div>
+ </div>
+ </div>
+<div class="wrap">
+ <div class="spol">
+  <p>Máme za sebou realizáciu viac ako sto nabíjacích staníc po celom Slovensku a&nbsp;komunikáciu s&nbsp;desiatkami stavebných úradov.</p>
+  <div class="loga"><small>Naša spolupráca</small><img src="logo-dalioil-tmave.png" alt="Dalioil" style="height:34px" loading="lazy"><img src="logo-greenway-tmave.png" alt="GreenWay" style="height:26px" loading="lazy"><img src="logo-vilavita-tmave.png" alt="Vila Vita" style="height:32px" loading="lazy"><img src="logo-dronerepublic-tmave.png" alt="Drone Republic" style="height:34px" loading="lazy"></div>
+ </div>
+</div></section>
+
+<section class="ns-sec ns-light"><div class="wrap">
+ <div class="shd"><h2>Postup</h2><span class="rule"></span></div>
+ <div class="trk">
+  <div class="st"><h3>Obhliadka a&nbsp;návrh</h3><div class="nd"></div><p class="p">Pozrieme sa na miesto, existujúci prívod a&nbsp;parkovanie. Navrhneme počet a&nbsp;výkon nabíjacích bodov.</p></div>
+  <div class="st"><h3>Pripojenie k&nbsp;sieti</h3><div class="nd"></div><p class="p">Žiadosť o&nbsp;pripojenie alebo navýšenie kapacity u&nbsp;distribučnej spoločnosti. Pri väčšom výkone vlastná trafostanica.</p></div>
+  <div class="st"><h3>Projekt a&nbsp;povolenie</h3><div class="nd"></div><p class="p">Projektová dokumentácia, vyjadrenia dotknutých orgánov a&nbsp;povolenie stavby.</p></div>
+  <div class="st"><h3>Výstavba</h3><div class="nd"></div><p class="p">Káblové trasy, základy, osadenie stojanov, elektroinštalácia a&nbsp;revízie.</p></div>
+  <div class="st"><h3>Kolaudácia</h3><div class="nd"></div><p class="p">Kolaudačné konanie a&nbsp;odovzdanie stanice do prevádzky.</p></div>
+ </div>
+</div></section>
+
+<section class="ns-sec ns-ink2"><div class="wrap">
+ <div class="shd"><h2>Čo staviame</h2><span class="rule"></span></div>
+ <div class="kind">
+  <div class="kd"><h3>AC stanice</h3><p class="p">Na parkoviská firiem, hotelov a&nbsp;bytových domov, kde autá stoja dlhšie.</p></div>
+  <div class="kd"><h3>DC rýchlonabíjačky</h3><p class="p">Pri cestách, čerpacích staniciach a&nbsp;obchodoch, kde sa nabíja počas krátkej zastávky.</p></div>
+  <div class="kd"><h3>Nabíjacie huby</h3><p class="p">Viac rýchlonabíjačiek na jednom mieste, často s&nbsp;vlastnou trafostanicou.</p></div>
+ </div>
+</div></section>
+
+<section class="ns-sec ns-light"><div class="wrap">
+ <div class="shd"><h2>Časté otázky</h2><span class="rule"></span></div>
+ <div class="faq">
+  <details><summary>Potrebuje nabíjacia stanica povolenie?</summary><p>Závisí od výkonu, umiestnenia a od toho, či treba novú prípojku alebo trafostanicu. Wallbox na existujúcom prívode v garáži povolenie väčšinou nepotrebuje, verejná stanica s novou prípojkou áno. Pri obhliadke vám povieme, čo bude treba.</p></details>
+  <details><summary>Čo trvá najdlhšie?</summary><p>Zvyčajne pripojenie k distribučnej sieti a vyjadrenia dotknutých orgánov. Samotná výstavba trvá kratšie, preto žiadosť o pripojenie podávame hneď na začiatku.</p></details>
+ </div>
+</div></section>
+
+<section class="ns-sec ns-ink" id="dopyt"><div class="wrap">
+ <div class="kk">
+  <div>
+   <div class="shd" style="margin-bottom:28px"><h2>Pošlite nám<br>lokalitu</h2></div>
+   <p class="lead">Stačí obec alebo adresa a&nbsp;čo plánujete.</p>
+   <form class="cf" id="nsform" novalidate>
+    <input class="hp" type="text" id="n_web" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="g2">
+     <div class="fld"><label for="n_meno">Meno, prípadne firma</label><div class="in"><input id="n_meno" autocomplete="name"></div></div>
+     <div class="fld"><label for="n_kont">E-mail alebo telefón</label><div class="in"><input id="n_kont" autocomplete="email"></div></div>
+    </div>
+    <div class="fld"><label for="n_lok">Lokalita</label><div class="in"><input id="n_lok" placeholder="obec alebo adresa"></div></div>
+    <div class="fld"><label for="n_zamer">Čo plánujete</label><div class="in"><textarea id="n_zamer" rows="3" placeholder="napr. štyri AC stanice na firemnom parkovisku alebo DC nabíjačka pri prevádzke"></textarea></div></div>
+    <label class="gchk"><input type="checkbox" id="n_suhlas"><span>Súhlasím so spracúvaním osobných údajov na účel vybavenia mojej žiadosti.</span></label>
+    <details class="gdpr"><summary>Ako s&nbsp;údajmi narábame</summary><p>Prevádzkovateľom je Studio09 s. r. o., Nákovná 25334/32B, 821 06 Bratislava, IČO 56 468 504. Údaje z&nbsp;formulára použijeme len na odpoveď na váš dopyt a&nbsp;nikomu ich nepredávame. Kontakt: info@studio09.sk.</p></details>
+    <p class="gerr" id="n_err"></p>
+    <button class="btn" type="submit" id="n_send">Odoslať</button>
+    <p class="sent" id="n_sent" hidden>Ďakujeme, ozveme sa.</p>
+   </form>
+  </div>
+  <div class="lines">
+   <div class="kr"><small>Telefón a WhatsApp</small><a href="https://wa.me/421908714517" target="_blank" rel="noopener">+421 908 714 517</a></div>
+   <div class="kr"><small>E-mail</small><a href="mailto:info@studio09.sk">info@studio09.sk</a></div>
+  </div>
+ </div>
+</div></section>
+</main>
+<!-- PATA:START -->
+<footer class="ft">
+ <div class="ft-in">
+  <div class="ft-firma">
+   <div class="ft-lg"><span class="wm">STUDIO<em>09</em></span><span class="tagline">Import. Electric.</span></div>
+   <p><b>Studio09 s. r. o.</b><br>Nákovná 25334/32B<br>821 06 Bratislava</p>
+   <p>IČO 56 468 504 · DIČ 2122322752<br>IČ DPH SK2122322752</p>
+   <p class="ft-or">Zapísaná v obchodnom registri Mestského súdu Bratislava III, oddiel Sro, vložka č. 181053/B</p>
+  </div>
+  <div class="ft-col"><h4>Kontakt</h4>
+   <a href="https://wa.me/421908714517" target="_blank" rel="noopener">+421 908 714 517</a>
+   <a href="mailto:info@studio09.sk">info@studio09.sk</a>
+   <a class="ft-soc" href="https://www.facebook.com/studio09.sk" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.6 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21z"/></svg>Facebook</a>
+   <a class="ft-soc" href="https://www.instagram.com/studio09.sk/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.9"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg>Instagram</a>
+  </div>
+  <div class="ft-col"><h4>Web</h4><a href="../">Ponuka áut</a><a href="../#sluzby">Služby</a><a href="../nabijacie-stanice/">Nabíjacie stanice</a><a href="../poradna/">Poradňa</a><a href="../#prirucka">Príručka</a></div>
+  <div class="ft-col"><h4>Kalkulačky</h4><a href="../nastroje/vyber-elektromobilu">Výber elektromobilu</a><a href="../nastroje/kalkulacka-dovozu-auta">Kalkulačka dovozu</a><a href="../nastroje/naklady-elektromobil-vs-spalovak">Elektromobil verzus spaľovák</a></div>
+ </div>
+ <div class="ft-bot"><span>© Studio09 s. r. o.</span><span class="ft-pr"><a href="../#ochrana-udajov">Ochrana osobných údajov</a><a href="../#cookies">Cookies</a></span></div>
+</footer>
+<!-- PATA:END -->
+<nav class="nsbar" id="nsbar">
+ <a class="go" href="#dopyt">Poslať lokalitu</a>
+ <a class="wa" href="https://wa.me/421908714517" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5a9.4 9.4 0 00-8.1 14.2L2.6 21.5l4.9-1.3A9.4 9.4 0 1012 2.5zm5.5 11.9c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4 2.5 1 3 .8 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg></a>
+</nav>
+<script>
+/* pri otvorení zo súboru na disku doplní index.html, aby fungovali odkazy */
+if(location.protocol==='file:')document.querySelectorAll('a[href]').forEach(function(a){var h=a.getAttribute('href');
+ if(/^(\.\.\/)+$/.test(h)||/\/$/.test(h)&&!/^https?:/.test(h))a.setAttribute('href',h+'index.html')});
+
+/* ═════ DOPYT ═════ */
+document.addEventListener('input',function(e){var p=e.target.closest('.bad');if(p)p.classList.remove('bad')});
+document.addEventListener('change',function(e){var p=e.target.closest('.bad');if(p)p.classList.remove('bad')});
+(function(){
+ var f=document.getElementById('nsform');if(!f)return;
+ f.addEventListener('submit',function(e){e.preventDefault();
+  var v=function(i){return document.getElementById(i).value.trim()},err=document.getElementById('n_err');
+  var zle=function(id,t){document.querySelectorAll('.bad').forEach(function(x){x.classList.remove('bad')});err.textContent=t;var el=document.getElementById(id),p=el.closest('.in')||el.closest('.gchk');if(p)p.classList.add('bad');el.focus()};
+  if(v('n_meno').length<2){zle('n_meno','Doplňte prosím meno.');return}
+  if(v('n_kont').length<5){zle('n_kont','Doplňte e-mail alebo telefón, aby sme sa mali kam ozvať.');return}
+  if(!document.getElementById('n_suhlas').checked){zle('n_suhlas','Bez súhlasu so spracovaním údajov správu odoslať nemôžeme.');return}
+  err.textContent='';var b=document.getElementById('n_send'),t=b.textContent;b.disabled=true;b.textContent='Odosiela sa…';
+  fetch('https://formsubmit.co/ajax/info@studio09.sk',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+   body:JSON.stringify({_subject:'Nabíjacie stanice — '+v('n_meno')+(v('n_lok')?' ('+v('n_lok')+')':''),_template:'table',_captcha:'false',
+    _honey:v('n_web'),Meno:v('n_meno'),Kontakt:v('n_kont'),Lokalita:v('n_lok')||'—',Zamer:v('n_zamer')||'(bez textu)'})})
+  .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!(j.success===true||j.success==='true'))throw 0})})
+  .then(function(){b.hidden=true;document.getElementById('n_sent').hidden=false})
+  .catch(function(){err.innerHTML='Správu sa nepodarilo odoslať. Skúste to prosím znova, alebo nám napíšte na <a href="mailto:info@studio09.sk">info@studio09.sk</a>.';b.disabled=false;b.textContent=t});
+ });
+ /* lišta na mobile sa skryje, keď je formulár na obrazovke */
+ var bar=document.getElementById('nsbar'),d=document.getElementById('dopyt');
+ if('IntersectionObserver' in window)new IntersectionObserver(function(es){bar.classList.toggle('skry',es[0].isIntersecting)}).observe(d);
+})();
+</script>
+</body></html>
