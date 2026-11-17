@@ -151,6 +151,7 @@
  .mbar .tel svg{width:19px;height:19px}
 }
 </style>
+<script src="/meranie.js" defer></script>
 </head>
 <body>
 <header>
@@ -281,7 +282,7 @@
    body:JSON.stringify({_subject:'Zavolajte mi — Mercedes-Benz C 300 e T Avantgarde ('+v+')',_template:'table',_captcha:'false',_honey:document.getElementById('cb_web').value,
     Telefon:v,Auto:'Mercedes-Benz C 300 e T Avantgarde, 36 900 €',Stranka:location.href})})
   .then(function(r){return r.json().then(function(j){if(!r.ok||!(j.success===true||j.success==='true'))throw 0})})
-  .then(function(){i.hidden=true;b.hidden=true;m.innerHTML='<span class="ok">Ďakujeme, čoskoro vám zavoláme.</span>'})
+  .then(function(){if(window.s09Konverzia)s09Konverzia('formular');i.hidden=true;b.hidden=true;m.innerHTML='<span class="ok">Ďakujeme, čoskoro vám zavoláme.</span>'})
   .catch(function(){b.disabled=false;b.textContent='Zavolajte mi';m.innerHTML='Nepodarilo sa odoslať. Volajte <a href="tel:+421908714517">0908 714 517</a>'})})})();
 </script>
 </body></html>

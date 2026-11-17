@@ -158,6 +158,7 @@ footer{padding-bottom:48px}
 }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "name": "Výstavba a povolenie nabíjacích staníc", "serviceType": "Projekt, povolenie, pripojenie k sieti, výstavba a kolaudácia nabíjacích staníc pre elektromobily", "areaServed": {"@type": "Country", "name": "Slovensko"}, "url": "https://studio09.sk/nabijacie-stanice/", "provider": {"@type": "Organization", "name": "Studio09 s.r.o.", "url": "https://studio09.sk/", "email": "info@studio09.sk", "telephone": "+421908714517"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Potrebuje nabíjacia stanica povolenie?", "acceptedAnswer": {"@type": "Answer", "text": "Závisí od výkonu, umiestnenia a od toho, či treba novú prípojku alebo trafostanicu. Wallbox na existujúcom prívode v garáži povolenie väčšinou nepotrebuje, verejná stanica s novou prípojkou áno. Pri obhliadke vám povieme, čo bude treba."}}, {"@type": "Question", "name": "Čo trvá najdlhšie?", "acceptedAnswer": {"@type": "Answer", "text": "Zvyčajne pripojenie k distribučnej sieti a vyjadrenia dotknutých orgánov. Samotná výstavba trvá kratšie, preto žiadosť o pripojenie podávame hneď na začiatku."}}]}]}</script>
+<script src="/meranie.js" defer></script>
 </head><body>
 <header>
  <a class="lg" href="../" aria-label="Studio09 — úvod">
@@ -302,7 +303,7 @@ document.addEventListener('change',function(e){var p=e.target.closest('.bad');if
    body:JSON.stringify({_subject:'Nabíjacie stanice — '+v('n_meno')+(v('n_lok')?' ('+v('n_lok')+')':''),_template:'table',_captcha:'false',
     _honey:v('n_web'),Meno:v('n_meno'),Kontakt:v('n_kont'),Lokalita:v('n_lok')||'—',Zamer:v('n_zamer')||'(bez textu)'})})
   .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!(j.success===true||j.success==='true'))throw 0})})
-  .then(function(){b.hidden=true;document.getElementById('n_sent').hidden=false})
+  .then(function(){b.hidden=true;document.getElementById('n_sent').hidden=false;if(window.s09Konverzia)s09Konverzia('formular')})
   .catch(function(){err.innerHTML='Správu sa nepodarilo odoslať. Skúste to prosím znova, alebo nám napíšte na <a href="mailto:info@studio09.sk">info@studio09.sk</a>.';b.disabled=false;b.textContent=t});
  });
  /* lišta na mobile sa skryje, keď je formulár na obrazovke */

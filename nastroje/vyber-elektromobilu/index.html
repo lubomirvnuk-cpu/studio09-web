@@ -1177,7 +1177,8 @@ header.dark .hlink:hover{color:var(--tyr)}
 @media(min-width:2200px) and (min-height:1150px){.hero .meta{zoom:1.38;width:calc(40% / 1.38)}}
 /* hlavička na počítači: menu v strede */
 @media(min-width:1200px){header{gap:20px}}
-</style></head><body>
+</style><script src="/meranie.js" defer></script>
+</head><body>
 
 <div class="prog" id="prog"></div>
 
@@ -2291,7 +2292,7 @@ if(cf) cf.addEventListener('submit',e=>{
   Meno:meno,Kontakt:kont,
   Auto:auto||'—',
   Sprava:document.getElementById('c_sprava').value.trim()||'(bez textu)'})
- .then(()=>{btn.hidden=true;document.getElementById('c_sent').hidden=false})
+ .then(()=>{btn.hidden=true;document.getElementById('c_sent').hidden=false;if(window.s09Konverzia)s09Konverzia('formular')})
  .catch(ch=>{err.innerHTML=ch.message+' Skúste to prosím znova, alebo nám napíšte priamo na <a href="mailto:info@studio09.sk">info@studio09.sk</a>.';
   btn.disabled=false;btn.textContent=pov});
 });
@@ -2304,10 +2305,11 @@ if(vz) vz.onclick=()=>{document.getElementById('c_vozidlo').value='';
 /* Web zatiaľ nepoužíva žiadne meranie, preto sa lišta so súhlasom nezobrazuje.
    Keď pribudne meranie (napr. konverzie z Google reklamy), prepnite na true, doplňte skript do cookieUloz
    a v texte TEXTY.cookies doplňte názvy cookie. */
-const MERANIE=false;
+const MERANIE=true;
 const ck=document.getElementById('cookie');
 function cookieUloz(a,m){
  ls('s09_cookies',JSON.stringify({nutne:1,analyticke:a?1:0,marketing:m?1:0,kedy:Date.now()}));
+ if(window.s09Suhlas)s09Suhlas(a,m);
  ck.hidden=true;document.body.classList.remove('cookie-open');
  /* TODO nasadenie: tu zapnúť meracie skripty podľa súhlasu */
 }
@@ -2364,7 +2366,7 @@ const TEXTY={
   <h4>Aké údaje a prečo</h4>
   <ul><li>Meno a kontakt z formulára — aby sme vám vedeli odpovedať na dopyt. Právny základ: predzmluvný vzťah.</li>
   <li>E-mail zadaný pri príručke — aby sme vedeli, kto si ju stiahol, a mohli poslať občasné novinky. Právny základ: váš súhlas, ktorý viete kedykoľvek odvolať.</li></ul>
-  <p>Návštevnosť webu nemeriame a nepoužívame reklamné cookie.</p>
+  <p>Návštevnosť webu nemeriame. Ak s tým súhlasíte, Google Ads (Google Ireland Ltd.) zaznamená, či ste po kliknutí na našu reklamu klikli na WhatsApp alebo telefónne číslo, alebo odoslali formulár. Slúži nám to len na vyhodnotenie reklamy, právny základ je váš súhlas, ktorý viete kedykoľvek odvolať v nastaveniach cookie. Viac v časti Cookies.</p>
   <h4>Komu sa údaje dostanú</h4>
   <p>Odoslané formuláre nám doručuje služba FormSubmit (Ghost Technologies Inc.), ktorá správu prepošle na našu e-mailovú adresu. Iným stranám údaje neposkytujeme.</p>
   <h4>Ako dlho ich uchovávame</h4>
@@ -2372,11 +2374,12 @@ const TEXTY={
   <h4>Vaše práva</h4>
   <p>Máte právo na prístup k údajom, ich opravu, vymazanie, obmedzenie spracúvania, prenosnosť a právo namietať. Napíšte nám na info@studio09.sk. Sťažnosť môžete podať na Úrad na ochranu osobných údajov SR.</p>`},
  cookies:{t:'Súbory cookie',h:`
-  <h4>Čo web ukladá</h4>
-  <p>Web nepoužíva analytické ani reklamné cookie a návštevnosť nemeria. Vo vašom prehliadači si ukladá len niekoľko údajov, ktoré potrebuje na fungovanie:</p>
-  <ul><li>či ste už príručku odomkli, aby ste nemuseli znova vypĺňať e-mail,</li>
-  <li>zaškrtnuté body v kontrolnom zozname v príručke.</li></ul>
-  <p>Tieto údaje zostávajú len vo vašom prehliadači, nikam sa neposielajú a vymažete ich vymazaním údajov webu v prehliadači.</p>
+  <h4>Nevyhnutné</h4>
+  <p>Vo vašom prehliadači si web ukladá len to, čo potrebuje na fungovanie: vaše rozhodnutie o cookie, či ste už príručku odomkli a zaškrtnuté body v kontrolnom zozname. Tieto údaje sa nikam neposielajú.</p>
+  <h4>Marketingové</h4>
+  <p>Používame službu Google Ads (Google Ireland Ltd.), aby sme vedeli, či ľudia, ktorí prišli z našej reklamy, nás kontaktovali — teda či klikli na WhatsApp alebo telefónne číslo, alebo odoslali formulár. Google na to ukladá cookie (napríklad _gcl_au, _gcl_aw) najviac na 90 dní. Bez vášho súhlasu sa tieto cookie neukladajú.</p>
+  <p>Analytické cookie (meranie návštevnosti) web zatiaľ nepoužíva.</p>
+  <p>Súhlas môžete kedykoľvek zmeniť: <a href="#" id="ckReopen">otvoriť nastavenia cookie</a>.</p>
   <h4>Odkazy na iné služby</h4>
   <p>Odkazy na Facebook, Instagram a WhatsApp otvárajú stránky týchto služieb, ktoré majú vlastné pravidlá pre cookie.</p>`}
 };
@@ -2386,9 +2389,8 @@ function otvorModal(k){
  document.getElementById('mbody').innerHTML=TEXTY[k].h;
 }
 document.getElementById('mclose').onclick=()=>md.hidden=true;
-const ckr=document.getElementById('ckReopen');
-if(ckr)ckr.onclick=()=>{ck.hidden=false;document.body.classList.add('cookie-open');
- ck.scrollIntoView({behavior:'smooth'})};
+document.addEventListener('click',e=>{if(!e.target.closest('#ckReopen'))return;e.preventDefault();md.hidden=true;
+ ck.hidden=false;document.body.classList.add('cookie-open')});
 md.addEventListener('click',e=>{if(e.target===md)md.hidden=true});
 addEventListener('keydown',e=>{if(e.key==='Escape')md.hidden=true});
 document.addEventListener('click',e=>{const a=e.target.closest('[data-modal]');if(a){e.preventDefault();otvorModal(a.dataset.modal)}});
