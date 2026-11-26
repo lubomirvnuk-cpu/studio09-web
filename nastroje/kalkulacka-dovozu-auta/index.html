@@ -1177,6 +1177,34 @@ header.dark .hlink:hover{color:var(--tyr)}
 @media(min-width:2200px) and (min-height:1150px){.hero .meta{zoom:1.38;width:calc(40% / 1.38)}}
 /* hlavička na počítači: menu v strede */
 @media(min-width:1200px){header{gap:20px}}
+
+/* ══ O TOMTO PROJEKTE ══ */
+.om{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);grid-template-areas:"ph hd" "ph bd";
+ border:1px solid rgba(237,241,248,.1);background:var(--ink)}
+.om-ph{grid-area:ph;position:relative;min-height:440px;overflow:hidden;background:#1B2333}
+.om-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 60%;display:block}
+.om-hd{grid-area:hd;padding:46px 52px 0}
+.om-hd h3{font-family:Archivo;font-weight:800;text-transform:uppercase;font-size:clamp(23px,2.6vw,36px);line-height:.94;letter-spacing:-.03em;color:var(--l1)}
+.om-bd{grid-area:bd;padding:22px 52px 46px;display:flex;flex-direction:column;align-items:flex-start}
+.om-bd .ld{font-family:Archivo;font-weight:600;font-size:19px;line-height:1.5;letter-spacing:-.01em;color:var(--l1)}
+.om-bd p{font-family:Inter;font-weight:400;font-size:16px;line-height:1.7;color:var(--gr3);max-width:38em;margin-top:14px}
+.om-wa{display:inline-flex;align-items:center;gap:10px;min-height:50px;margin-top:28px;padding:0 24px;
+ background:var(--tyr3);color:#EAFFF9;text-decoration:none;font-family:Archivo;font-weight:800;font-size:13px;
+ letter-spacing:.11em;text-transform:uppercase;transition:.22s}
+.om-wa svg{width:19px;height:19px;flex:none}
+.om-wa:hover{background:var(--tyr);color:var(--ink)}
+@media(max-width:940px){
+ #o-projekte{padding:56px 18px}
+ .om{grid-template-columns:1fr;grid-template-areas:"ph" "hd" "bd"}
+ .om-ph{min-height:0;aspect-ratio:5/4}
+ .om-hd{padding:26px 22px 0}
+ .om-hd h3{font-size:26px}
+ .om-bd{padding:18px 22px 24px}
+ .om-bd .ld{font-size:17px}
+ .om-bd p{font-size:15px;line-height:1.65}
+}
+@media(max-width:600px){.om-wa{align-self:stretch;justify-content:center}}
+@media(min-width:601px) and (max-width:940px){.om-ph{aspect-ratio:16/10}.om-ph img{object-position:50% 55%}}
 </style><script src="/meranie.js" defer></script>
 </head><body>
 
@@ -1277,6 +1305,21 @@ header.dark .hlink:hover{color:var(--tyr)}
  </div>
  <div class="soldwrap"><div class="soldtrack" id="soldTrack"></div></div>
 </section>
+
+<section data-hdr="dark" id="o-projekte" class="t-ink"><div class="inner reveal">
+ <div class="shd"><h3>O tomto projekte</h3><span class="rule"></span></div>
+ <div class="om">
+  <div class="om-ph"><picture><source media="(max-width:940px)" srcset="/images-web/o-projekte-m.jpg"><img src="/images-web/o-projekte.jpg" alt="Ľubomír Vnuk pri aute" loading="lazy" width="1000" height="1190"></picture></div>
+  <div class="om-hd"><h3>Ľubomír Vnuk</h3></div>
+  <div class="om-bd">
+   <p class="ld">Studio09 nie je veľký autobazár. Pracujem inak.</p>
+   <p>Venujem sa primárne inžinieringu a&nbsp;projektovému manažmentu, často úzko spätému s&nbsp;elektromobilitou. Niekoľko rokov som pomáhal rozširovať jednu z&nbsp;najväčších nabíjacích sietí na Slovensku, okrem iného aj o&nbsp;veľké nabíjacie huby s&nbsp;trafostanicami.</p>
+   <p>S&nbsp;autami pracujem 19&nbsp;rokov. V&nbsp;prvom elektromobile, Tesle Model S, som jazdil už v&nbsp;roku 2014. Do dnešného dňa prešlo mojimi rukami viac ako 300&nbsp;áut a&nbsp;ako používateľ poznám takmer všetky dostupné platformy. Elektrické, hybridné i&nbsp;spaľovacie. A&nbsp;baví ma to stále viac.</p>
+   <p>Každé auto, ktoré predávam, trávi niekoľko dní u&nbsp;mňa v&nbsp;garáži, kde ho dôkladne pripravím a&nbsp;testujem ho aj na cestách. Chcem mať istotu, že s&nbsp;novým členom domácnosti či firmy neposúvam ďalej aj skryté vady. Preto v&nbsp;mojej ponuke nenájdete desiatky nudných krabíc, ale iba kúsky, ktoré by som si sám kúpil.</p>
+   <a class="om-wa" href="https://wa.me/421908714517" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>Napíšte mi na WhatsApp</a>
+  </div>
+ </div>
+</div></section>
 
 <!-- PORADNA:START -->
 <section data-hdr="light" id="poradna" class="t-light"><div class="inner reveal">
@@ -1623,7 +1666,7 @@ header.dark .hlink:hover{color:var(--tyr)}
    <a class="ft-soc" href="https://www.facebook.com/studio09.sk" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.6 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21z"/></svg>Facebook</a>
    <a class="ft-soc" href="https://www.instagram.com/studio09.sk/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.9"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg>Instagram</a>
   </div>
-  <div class="ft-col"><h4>Web</h4><a href="/" data-nav="home" data-sec="uvod">Ponuka áut</a><a href="/#sluzby" data-nav="home" data-sec="sluzby">Služby</a><a href="/nabijacie-stanice/">Nabíjacie stanice</a><a href="/poradna/">Poradňa</a><a href="/#prirucka" data-nav="home" data-sec="prirucka">Príručka</a></div>
+  <div class="ft-col"><h4>Web</h4><a href="/" data-nav="home" data-sec="uvod">Ponuka áut</a><a href="/#sluzby" data-nav="home" data-sec="sluzby">Služby</a><a href="/nabijacie-stanice/">Nabíjacie stanice</a><a href="/#o-projekte" data-nav="home" data-sec="o-projekte">O projekte</a><a href="/poradna/">Poradňa</a><a href="/#prirucka" data-nav="home" data-sec="prirucka">Príručka</a></div>
   <div class="ft-col"><h4>Kalkulačky</h4><a href="/nastroje/vyber-elektromobilu" data-nav="t0">Výber elektromobilu</a><a href="/nastroje/kalkulacka-dovozu-auta" data-nav="t1">Kalkulačka dovozu</a><a href="/nastroje/naklady-elektromobil-vs-spalovak" data-nav="t2">Elektromobil verzus spaľovák</a></div>
  </div>
  <div class="ft-bot"><span>© Studio09 s. r. o.</span><span class="ft-pr"><a href="/#ochrana-udajov" data-modal="gdpr">Ochrana osobných údajov</a><a href="/#cookies" data-modal="cookies">Cookies</a></span></div>
